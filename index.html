@@ -2,8 +2,8 @@
 <html>
 
 <head>
-<script src="http://docs.opencv.org/master/opencv.js" type="text/javascript"></script>
-<script src="http://docs.opencv.org/master/utils.js" type="text/javascript"></script>
+<script src="https://docs.opencv.org/master/opencv.js" type="text/javascript"></script>
+<script src="https://docs.opencv.org/master/utils.js" type="text/javascript"></script>
 
 <script type='text/javascript'>
   cv['onRuntimeInitialized']=()=>{
@@ -32,27 +32,6 @@
       var begin = Date.now();
       cap.read(frame);  // Read a frame from camera
 
-      // Process frame
-      cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
-
-      var blob = cv.blobFromImage(frameBGR, 1, {width: 128, height: 96}, [104, 177, 123, 0]);
-      net.setInput(blob);
-      var out = net.forward();
-
-      for (var i = 0, n = out.data32F.length; i < n; i += 7) {
-        var confidence = out.data32F[i + 2];
-        if (confidence < 0.5)
-          continue;
-
-        var left = out.data32F[i + 3] * img.cols;
-        var top = out.data32F[i + 4] * img.rows;
-        var right = out.data32F[i + 5] * img.cols;
-        var bottom = out.data32F[i + 6] * img.rows;
-        cv.rectangle(frame, {x: left, y: top}, {x: right, y: bottom}, [0, 255, 0, 255]);
-      }
-      blob.delete();
-      out.delete();
-
       // Visualize frame
       cv.imshow(output, frame);
 
@@ -67,7 +46,6 @@
         captureFrame();
       });
     });
-
   };
 </script>
 
