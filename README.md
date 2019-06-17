@@ -29,7 +29,7 @@ Follow this guide to create your own GitHub Page with this example.
     Create an input 4D blob. You may vary input resolution (width and height) to balance between efficiency and accuracy.
 
     ```js
-    var blob = cv.blobFromImage(frameBGR, 1, {width: 192, height: 144}, [104, 177, 123, 0]);
+    var blob = cv.blobFromImage(frameBGR, 1, {width: 192, height: 144}, [104, 117, 123, 0]);
     ```
 
     Put input blob to the network and do forward pass:
