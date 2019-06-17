@@ -34,7 +34,7 @@
     
       // Process frame
       cv.cvtColor(frame, frameBGR, cv.COLOR_RGBA2BGR);
-      var blob = cv.blobFromImage(frameBGR, 1, {width: 192, height: 144}, [104, 177, 123, 0]);
+      var blob = cv.blobFromImage(frameBGR, 1, {width: 192, height: 144}, [104, 117, 123, 0]);
       net.setInput(blob);
       var out = net.forward();
       for (var i = 0, n = out.data32F.length; i < n; i += 7) {
